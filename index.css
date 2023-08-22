@@ -1,4 +1,26 @@
-#header {
+.header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
 
-    color: rgb(32, 76, 61);
+.logo {
+    width: 150px;
+}
+
+.nav-items {
+    margin-right: 15px;
+
+}
+.nav-items > ul {
+    display: flex;
+    list-style-type: none;
+    font-size: 18px;
+}
+
+.nav-items > ul > li {
+
+    padding: 10px;
+    margin: 5px;
+    text-decoration: none;
 }
