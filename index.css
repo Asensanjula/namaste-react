@@ -24,3 +24,16 @@
     margin: 5px;
     text-decoration: none;
 }
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+.res-card {
+    border: 1px solid black;
+}
+
+.res-logo{
+    width: 220px;
+}
