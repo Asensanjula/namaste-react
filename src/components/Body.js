@@ -5,12 +5,14 @@ import { SWIGGY_DATA } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  const [originalResList, setOriginalResList] = useState([]);
 
   useEffect(() => {
     fetchData();
+    console.log(originalResList);
   }, []);
-
-  console.log(listOfRestaurant);
 
   const fetchData = async () => {
     const data = await fetch(SWIGGY_DATA);
@@ -22,18 +24,34 @@ const Body = () => {
 
     // console.log(filteredRestaurants);
 
-    setListOfRestaurant(
-      json.data.cards
-        .filter((x) => x.card.card.hasOwnProperty("info"))
-        .map((x) => x.card.card.info)
+    setListOfRestaurant(filteredRestaurants);
+    setOriginalResList(filteredRestaurants);
+  };
+
+  const searchRestaurants = () => {
+    console.log(originalResList);
+    let filteredRestaurant = originalResList?.filter((res) =>
+      res?.name.toLowerCase().includes(searchText?.toLowerCase())
     );
+    setListOfRestaurant(filteredRestaurant);
   };
 
   return (
     <div className="body">
+      <div className="search-container">
+        <input
+          type="text"
+          className="search-text"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button className="searchBtn" onClick={searchRestaurants}>
+          Search
+        </button>
+      </div>
       <div className="res-container">
         {listOfRestaurant?.map((res) => {
-          return <RestaurantCard resData={res} />;
+          return <RestaurantCard key={res.id} resData={res} />;
         })}
       </div>
     </div>

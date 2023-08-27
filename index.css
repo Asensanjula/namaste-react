@@ -1,6 +1,6 @@
 body{
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Ubuntu';
 }
 
 .header {
@@ -33,7 +33,7 @@ body{
 .res-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 5px;
 }
 
@@ -47,6 +47,7 @@ body{
     width: 220px;
     margin-top: 5px;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .res-card:hover {
@@ -69,4 +70,24 @@ body{
 .res-cuisines {
     padding: 5px;
     color: rgb(18, 29, 30);
+}
+
+.login {
+    border-radius: 15px;
+    padding: 0 20px;
+    background-color: rgba(14, 65, 141, 0.897);
+    border-color: white;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+
+}
+
+.search-container{
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+}
+
+.search-text{
+    margin-right: 5px;
 }
