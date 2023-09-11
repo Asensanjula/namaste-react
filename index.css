@@ -91,3 +91,9 @@ body{
 .search-text{
     margin-right: 5px;
 }
+
+.user-card {
+    padding: 10px;
+    border: 1px solid black;
+    width: 25%;
+}

@@ -1,7 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
-import { resData } from "../utils/resData";
 import { useState, useEffect } from "react";
 import { SWIGGY_DATA } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -51,7 +51,11 @@ const Body = () => {
       </div>
       <div className="res-container">
         {listOfRestaurant?.map((res) => {
-          return <RestaurantCard key={res.id} resData={res} />;
+          return (
+            <Link key={res.id} to={"/restaurant/" + res.id}>
+              <RestaurantCard resData={res} />
+            </Link>
+          );
         })}
       </div>
     </div>
