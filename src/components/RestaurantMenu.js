@@ -1,28 +1,29 @@
-import { useEffect, useState } from "react";
-import { SWIGGY_DATA_RESTAURANT_MENU } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/customHooks/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [menu, setMenu] = useState({});
+  // const [menu, setMenu] = useState({});
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  const menu = useRestaurantMenu(resId);
 
-  const fetchMenu = async () => {
-    let data = await fetch(SWIGGY_DATA_RESTAURANT_MENU + resId);
-    let jsonData = await data.json();
+  // useEffect(() => {
+  //   fetchMenu();
+  // }, []);
 
-    console.log(jsonData);
+  // const fetchMenu = async () => {
+  //   let data = await fetch(SWIGGY_DATA_RESTAURANT_MENU + resId);
+  //   let jsonData = await data.json();
 
-    let filteredData = jsonData.data.cards
-      .filter((x) => x?.card?.card.hasOwnProperty("info"))
-      .map((x) => x.card.card.info);
+  //   console.log(jsonData);
 
-    // console.log(jsonData.data.cards[0].card.card.info);
-    setMenu(filteredData);
-  };
+  //   let filteredData = jsonData.data.cards
+  //     .filter((x) => x?.card?.card.hasOwnProperty("info"))
+  //     .map((x) => x.card.card.info);
+
+  //   // console.log(jsonData.data.cards[0].card.card.info);
+  //   setMenu(filteredData);
+  // };
 
   console.log(menu);
 

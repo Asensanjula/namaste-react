@@ -1,5 +1,20 @@
+import { useEffect } from "react"
 
 const User = () => {
+
+    useEffect(() => {
+
+         const intervalId = setInterval(()=> {
+            console.log('Namaste FC OP')
+        },1000)
+
+        return () => {
+            console.log('Use Effect Return')
+            clearInterval(intervalId)
+        }
+
+    },[])
+
     return (
         <div className="user-card">
             <h2>Name : Asen De Silva</h2>
