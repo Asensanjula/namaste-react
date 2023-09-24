@@ -2,12 +2,15 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import { SWIGGY_DATA } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/customHooks/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   const [originalResList, setOriginalResList] = useState([]);
+
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchData();
@@ -35,6 +38,8 @@ const Body = () => {
     );
     setListOfRestaurant(filteredRestaurant);
   };
+
+  if(!onlineStatus) return <h1>User is Offline!. Please check the Internet Connection!!!</h1>
 
   return (
     <div className="body">
