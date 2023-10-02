@@ -1,5 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* 
+
 body{
-    /* font-family: 'Open Sans', sans-serif; */
+    
     font-family: 'Ubuntu';
 }
 
@@ -62,7 +69,7 @@ body{
 }
 
 .res-name{
-    /* font-weight: 400; */
+    
     color: rgb(9, 104, 145);
     padding: 5px;
 }
@@ -97,4 +104,4 @@ body{
     border: 1px solid black;
     width: 25%;
     margin: 5px;
-}
+} */

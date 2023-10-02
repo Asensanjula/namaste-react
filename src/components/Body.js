@@ -39,25 +39,27 @@ const Body = () => {
     setListOfRestaurant(filteredRestaurant);
   };
 
-  if(!onlineStatus) return <h1>User is Offline!. Please check the Internet Connection!!!</h1>
+  if (!onlineStatus)
+    return <h1>User is Offline!. Please check the Internet Connection!!!</h1>;
 
   return (
     <div className="body">
       <div className="search-container">
         <input
           type="text"
-          className="search-text"
+          className="search-text mx-1 my-3 border border-solid border-black"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <button className="searchBtn" onClick={searchRestaurants}>
+        <button className=" px-4 py-1 bg-cyan-500 shadow-lg shadow-cyan-500/50 hover:shadow-indigo-500/40 text-white rounded" 
+          onClick={searchRestaurants}>
           Search
         </button>
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap justify-between">
         {listOfRestaurant?.map((res) => {
           return (
-            <Link key={res.id} to={"/restaurant/" + res.id}>
+            <Link key={res.id} to={"/restaurant/" + res.id} className="flex m-4 w-[200px] rounded-[10px] shadow-md transition cursor-pointer">
               <RestaurantCard resData={res} />
             </Link>
           );
