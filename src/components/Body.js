@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withPromotedLabel} from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import { SWIGGY_DATA } from "../utils/constants";
 import { Link } from "react-router-dom";
@@ -7,6 +7,8 @@ import useOnlineStatus from "../utils/customHooks/useOnlineStatus";
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   const [originalResList, setOriginalResList] = useState([]);
 
@@ -17,6 +19,7 @@ const Body = () => {
     console.log(originalResList);
   }, []);
 
+  console.log("list of res ", listOfRestaurant);
   const fetchData = async () => {
     const data = await fetch(SWIGGY_DATA);
 
@@ -60,7 +63,10 @@ const Body = () => {
         {listOfRestaurant?.map((res) => {
           return (
             <Link key={res.id} to={"/restaurant/" + res.id} className="flex m-4 w-[200px] rounded-[10px] shadow-md transition cursor-pointer">
-              <RestaurantCard resData={res} />
+              
+              {
+                res?.promoted ? <RestaurantCardPromoted resData={res}/> : <RestaurantCard resData={res} />
+              }
             </Link>
           );
         })}
