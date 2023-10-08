@@ -10,6 +10,7 @@ import { SWIGGY_DATA_RESTAURANT_MENU } from "../constants";
 const useRestaurantMenu = (resId) => {
 
     const [menu, setMenu] = useState([]);
+    const [Categories, setCategories] = useState([]);
     useEffect(()=> {
         fetchMenu();
     },[]);
@@ -24,13 +25,22 @@ const useRestaurantMenu = (resId) => {
           .filter((x) => x?.card?.card.hasOwnProperty("info"))
           .map((x) => x.card.card.info);
     
-        // console.log(jsonData.data.cards[0].card.card.info);
+        // console.log(jsonData.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards);
+
+        let itemCategories = jsonData.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards
+        .filter(card => card?.card.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
+        .map(x => x.card?.card);
+        
         setMenu(filteredData);
+        setCategories(itemCategories);
+
+        console.log("Categories ",Categories);
+        console.log("Menu ",menu);
       };
 
 
 
-    return menu;
+    return [menu, Categories];
 
 }
 

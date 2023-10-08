@@ -1,36 +1,30 @@
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/customHooks/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   // const [menu, setMenu] = useState({});
   const { resId } = useParams();
 
-  const menu = useRestaurantMenu(resId);
-
-  // useEffect(() => {
-  //   fetchMenu();
-  // }, []);
-
-  // const fetchMenu = async () => {
-  //   let data = await fetch(SWIGGY_DATA_RESTAURANT_MENU + resId);
-  //   let jsonData = await data.json();
-
-  //   console.log(jsonData);
-
-  //   let filteredData = jsonData.data.cards
-  //     .filter((x) => x?.card?.card.hasOwnProperty("info"))
-  //     .map((x) => x.card.card.info);
-
-  //   // console.log(jsonData.data.cards[0].card.card.info);
-  //   setMenu(filteredData);
-  // };
-
+  const [menu, Categories] = useRestaurantMenu(resId);
   console.log(menu);
+  console.log("Inside Menu categories ",Categories);
+
+  const { name , cuisines} = menu.length > 0 ? menu[0] : [];
 
   return (
-    <div className="res-menu">
-      <h1>{menu[0]?.name}</h1>
+    <div className="flex flex-col items-center mt-4">
+      <h1 className="font-bold text-lg bg-cyan-400  p-2 rounded text-white">{name}</h1>
+      <p className="p-4 text-gray-400">{cuisines?.join(", ")}</p>
 
+      {
+        Categories.map( card => {
+              return (
+                <RestaurantCategory data={card} key={card.title}/>
+              );
+          }
+          )
+      }
     </div>
   );
 };
