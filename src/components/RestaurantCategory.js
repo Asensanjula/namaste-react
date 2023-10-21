@@ -1,12 +1,13 @@
 import ItemList from "./ItemList";
 import { useState } from "react";
 
-const RestaurantCategory = ({ data }) => {
+const RestaurantCategory = ({ data , showItems, setCatIndex}) => {
   console.log("Res Category Data ", data);
-  const [showItems, setShowItems] = useState(false);
+  const [childShowItem, setChildShowItems] = useState(false);
 
   const handleAccordian = () => {
-    setShowItems(!showItems);
+    setCatIndex();
+    // setShowItems();
   };
   return (
     <>
